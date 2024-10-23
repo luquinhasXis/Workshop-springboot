@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.techlucas.workmongo.domain.Post;
 import com.techlucas.workmongo.domain.User;
+import com.techlucas.workmongo.dto.AuthorDTO;
 import com.techlucas.workmongo.repository.PostRepository;
 import com.techlucas.workmongo.repository.UserRepository;
 
@@ -33,12 +34,16 @@ public class Instantiation implements CommandLineRunner {
 		
 		User lucas = new User(null, "Lucas Silva", "lucaszin174@gmail.com");
 		User fernando = new User(null, "Fernando Bob", "fernand0smt@gmail.com");
-		User luana = new User(null, "Luana batista", "luaminguante@gmail.com");		
+		User luana = new User(null, "Luana batista", "luaminguante@gmail.com");	
 		
-		Post post1 = new Post(null, sdf.parse("09/09/2024"), "Primeiro dia no trabalho", "Vou iniciar meu primeiro dia como segurança virtual", lucas);
-		Post post2 = new Post(null, sdf.parse("18/10/2024"), "Dia de praia", "Saindo do trabalho irei direto para a praia curtir!!", lucas);
-	
 		userRepository.saveAll(Arrays.asList(lucas, fernando, luana));
+		
+		Post post1 = new Post(null, sdf.parse("09/09/2024"), "Primeiro dia no trabalho", "Vou iniciar meu primeiro dia como segurança virtual", new AuthorDTO(lucas));
+		Post post2 = new Post(null, sdf.parse("18/10/2024"), "Dia de praia", "Saindo do trabalho irei direto para a praia curtir!!", new AuthorDTO(lucas));
+		
 		postRepository.saveAll(Arrays.asList(post1, post2));
+		
+		lucas.getPosts().addAll(Arrays.asList(post1, post2));
+		userRepository.save(lucas);
 	}	
 }
