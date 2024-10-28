@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.techlucas.workmongo.domain.Post;
 import com.techlucas.workmongo.domain.User;
 import com.techlucas.workmongo.dto.AuthorDTO;
+import com.techlucas.workmongo.dto.CommentDTO;
 import com.techlucas.workmongo.repository.PostRepository;
 import com.techlucas.workmongo.repository.UserRepository;
 
@@ -40,6 +41,13 @@ public class Instantiation implements CommandLineRunner {
 		
 		Post post1 = new Post(null, sdf.parse("09/09/2024"), "Primeiro dia no trabalho", "Vou iniciar meu primeiro dia como segurança virtual", new AuthorDTO(lucas));
 		Post post2 = new Post(null, sdf.parse("18/10/2024"), "Dia de praia", "Saindo do trabalho irei direto para a praia curtir!!", new AuthorDTO(lucas));
+		
+		CommentDTO c1 = new CommentDTO("Boa sorte mano!", sdf.parse("09/09/2024"), new AuthorDTO(fernando));
+		CommentDTO c2 = new CommentDTO("Aproveite a praia", sdf.parse("19/10/2024"), new AuthorDTO(luana));
+		CommentDTO c3 = new CommentDTO("ai sim em", sdf.parse("18/10/2024"), new AuthorDTO(fernando));
+		
+		post1.getComments().addAll(Arrays.asList(c1));
+		post2.getComments().addAll(Arrays.asList(c2, c3));
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 		
