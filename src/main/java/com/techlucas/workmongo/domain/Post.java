@@ -17,23 +17,23 @@ public class Post implements Serializable {
 	
 	@Id
 	private String id;
-	private Date data;
-	private String titulo;
+	private Date date;
+	private String title;
 	private String body;
-	private AuthorDTO autor;
+	private AuthorDTO author;
 	
 	private List<CommentDTO> comments = new ArrayList<>();
 	
 	public Post() {
 	}
 
-	public Post(String id, Date data, String titulo, String body, AuthorDTO autor) {
+	public Post(String id, Date date, String title, String body, AuthorDTO author) {
 		super();
 		this.id = id;
-		this.data = data;
-		this.titulo = titulo;
+		this.date = date;
+		this.title = title;
 		this.body = body;
-		this.autor = autor;
+		this.author = author;
 	}
 
 	public String getId() {
@@ -45,19 +45,19 @@ public class Post implements Serializable {
 	}
 
 	public Date getData() {
-		return data;
+		return date;
 	}
 
 	public void setData(Date data) {
-		this.data = data;
+		this.date = data;
 	}
 
 	public String getTitulo() {
-		return titulo;
+		return title;
 	}
 
 	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+		this.title = titulo;
 	}
 
 	public String getBody() {
@@ -69,11 +69,11 @@ public class Post implements Serializable {
 	}
 	
 	public AuthorDTO getAutor() {
-		return autor;
+		return author;
 	}
 
 	public void setAutor(AuthorDTO autor) {
-		this.autor = autor;
+		this.author = autor;
 	}
 
 	public List<CommentDTO> getComments() {
